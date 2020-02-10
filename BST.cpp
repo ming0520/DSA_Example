@@ -191,41 +191,16 @@ class BST{
     }
 
     //============================================================================
-    // Purpose       :
-    // Precondition  :
-    // Postcondition :
+    // Purpose       : Display BST in 2D
+    // Precondition  : None
+    // Postcondition : 2D Graph displayed
     //============================================================================
-    void print2D(void)  
+    void Display(void)  
     {  
         // Pass initial space count as 0  
         print2DUtil(Root, 0);  
     }  
-
-//============================================================================
-// Purpose       : Inorder traversal of BST.
-// Precondition  : ostream out is open.
-// Postcondition : BST has been inorder traversed and values in nodes 
-//                 have been output to out.
-// Note          : inorder uses private auxiliary function inorderAux().
-//============================================================================    
-
-    void Inorder(void){
-        
-    }
-
-//============================================================================
-// Purpose       : Graphic output of BST.
-// Precondition  : ostream out is open.
-// Postcondition : Graphical representation of BST has been output to out.
-// Note          : inorder uses private auxiliary function graphAux().
-//============================================================================       
-    void Graph(void){
-
-    }
-    
-
-
-
+ 
     private:
   //============================================================================
   // Purpose       : Locate a node containing item and its parent.
@@ -257,7 +232,7 @@ class BST{
     //============================================================================
     // Purpose       : Function to print binary tree in 2D  
     // Precondition  : None
-    // Postcondition : None
+    // Postcondition : Data Printed
     //============================================================================
     void print2DUtil(Node *root, int space)  
     {  
@@ -281,30 +256,7 @@ class BST{
         // Process left child  
         print2DUtil(root->Left, space);  
     }  
-    //============================================================================
-    // Purpose       : Inorder traversal auxiliary function.
-    // Precondition  : ostream out is open; subtreePtr points to a subtree of 
-    //                 this BST.
-    // Postcondition : Subtree of this BST with subtreePtr as root has been 
-    //                 output to out.
-    //============================================================================
 
-    void inorderAux(Node subtreePtr){
-
-    }
-    
-    //============================================================================
-    // Purpose       : Graph auxiliary function.
-    // Precondition  : ostream out is open; subtreePtr points to a subtree 
-    //                 of this BST.
-    // Postcondition : Graphical representation of subtree of this 
-    //                 BST with subtreePtr as root has been output to out, 
-    //                 indented indent spaces.
-    //============================================================================
-
-    void graphAux(int indent, Node subtreeRoot){
-
-    }
 };
 
 int main(void){
@@ -325,5 +277,5 @@ int main(void){
     else{
         cout << "85 is not in the list" << endl;
     }
-    bst1.print2D();
+    bst1.Display();
 }
