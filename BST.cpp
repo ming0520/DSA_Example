@@ -17,7 +17,7 @@ class BST{
         }
     };
 
-    
+    int NodeCounter;
     Node *Root;
 //============================================================================
 // Purpose       : Construct a BST object.
@@ -26,6 +26,7 @@ class BST{
 //============================================================================
     BST(void){
         Root = 0;
+        NodeCounter = 0;
     }
 //============================================================================
 // Purpose       : Check if BST is empty.
@@ -72,7 +73,7 @@ class BST{
         locptr = Root;
         parent = 0;
         
-        while(!found || locptr != 0){
+        while(!found && locptr != 0){
             parent = locptr;
             if(item < locptr->Data){
                 locptr = locptr->Left;
@@ -96,6 +97,7 @@ class BST{
             else{
                 parent->Right = locptr;
             }
+            NodeCounter++;
         }
         else{
             cout << "Item already in the list" << endl;
@@ -131,7 +133,23 @@ class BST{
     void Remove(int item){
         bool found;
         Node *x, *parent;
-        search2(item,found,x,parent);
+        //search2(item,found,x,parent);
+        x = Root;
+        parent = 0;
+        found = false;
+        while(!found && x != 0){
+            if(item < x->Data){
+                parent = x;
+                x = x->Left;
+            }
+            else if(x->Data < item){
+                parent = x;
+                x = x->Right;
+            }
+            else{
+                found = true;
+            }
+        }
 
         if(!found){
             cout << "Item not in the BST\n";
@@ -160,10 +178,28 @@ class BST{
         if(parent == 0){
             Root = subtree;
         }
+        else if(parent->Left == x){
+            parent->Left = subtree;
+        }
+        else{
+            parent->Right = subtree;
+        }
+        NodeCounter--;
+        delete x;
+
 
     }
 
-
+    //============================================================================
+    // Purpose       :
+    // Precondition  :
+    // Postcondition :
+    //============================================================================
+    void print2D(void)  
+    {  
+        // Pass initial space count as 0  
+        print2DUtil(Root, 0);  
+    }  
 
 //============================================================================
 // Purpose       : Inorder traversal of BST.
@@ -201,7 +237,7 @@ class BST{
     void search2(int &item, bool &found, Node *locptr, Node *parent){
         locptr = Root;
         parent = 0;
-        found = 0;
+        found = false;
 
         while(!found && locptr != 0){
             if(item < locptr->Data){
@@ -218,7 +254,33 @@ class BST{
         }
 
     }
-
+    //============================================================================
+    // Purpose       : Function to print binary tree in 2D  
+    // Precondition  : None
+    // Postcondition : None
+    //============================================================================
+    void print2DUtil(Node *root, int space)  
+    {  
+        // Base case  
+        if (root == NULL)  
+            return;  
+    
+        // Increase distance between levels  
+        space += NodeCounter;  
+    
+        // Process right child first  
+        print2DUtil(root->Right, space);  
+    
+        // Print current node after space  
+        // count  
+        cout<<endl;  
+        for (int i = NodeCounter; i < space; i++)  
+            cout<<" ";  
+        cout<<root->Data<<"\n";  
+    
+        // Process left child  
+        print2DUtil(root->Left, space);  
+    }  
     //============================================================================
     // Purpose       : Inorder traversal auxiliary function.
     // Precondition  : ostream out is open; subtreePtr points to a subtree of 
@@ -246,5 +308,22 @@ class BST{
 };
 
 int main(void){
-    
+    cout << "Creating BST..." << endl;
+    BST bst1;
+    bst1.Insert(30);
+    bst1.Insert(20);
+    bst1.Insert(10);
+    bst1.Insert(50);
+    bst1.Insert(90);
+    bst1.Insert(85);
+    cout << "30, 20, 10, 50, 90, 85 inserted!" << endl;
+    bst1.Remove(85);
+    cout << "85 removed" << endl;
+    if(bst1.Search(85) == true){
+        cout << "85 is in the list" << endl;
+    }
+    else{
+        cout << "85 is not in the list" << endl;
+    }
+    bst1.print2D();
 }
