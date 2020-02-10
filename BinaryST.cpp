@@ -66,7 +66,7 @@ class BST{
             parent = locPtr;
             if(item < locPtr->Data)  //descend left
                 locPtr = locPtr->Left;
-            else if(locPtr->Data < item>)  //descend right
+            else if(locPtr->Data < item)  //descend right
                 locPtr = locPtr->Right;
             else
                 found = true;  //item found
