@@ -54,7 +54,7 @@ class BST{
             }
             else if(item > locptr->Data){
                 locptr = locptr->Right;
-            }
+            }qqq
             else{
                 found = true;
             }
@@ -103,19 +103,7 @@ class BST{
             cout << "Item already in the list" << endl;
         }
     } 
-//============================================================================
-// Purpose       : Find Min value in non empty BST
-// Precondition  : None
-// Postcondition : Return address of min value in BST
-//============================================================================
-    Node *minValueNode(){
-        Node *current = Root;
-        while(current && current->Left != 0){
-            current = current->Left;
-        }
 
-        return current;
-    }    
 //============================================================================
 // Purpose       : Remove item from BST.
 // Precondition  : None.
@@ -202,40 +190,13 @@ class BST{
     }  
  
     private:
-  //============================================================================
-  // Purpose       : Locate a node containing item and its parent.
-  // Precondition  : None.
-  // Postcondition : locptr points to node containing item or is
-  //                 null if not found, and parent points to its parent
-  //============================================================================
 
-    void search2(int &item, bool &found, Node *locptr, Node *parent){
-        locptr = Root;
-        parent = 0;
-        found = false;
-
-        while(!found && locptr != 0){
-            if(item < locptr->Data){
-                parent = locptr;
-                locptr = locptr->Left;
-            }
-            else if(item > locptr->Data){
-                parent = locptr;
-                locptr = locptr->Right;
-            }
-            else{
-                found = true;
-            }
-        }
-
-    }
     //============================================================================
     // Purpose       : Function to print binary tree in 2D  
     // Precondition  : None
     // Postcondition : Data Printed
     //============================================================================
-    void print2DUtil(Node *root, int space)  
-    {  
+    void print2DUtil(Node *root, int space){  
         // Base case  
         if (root == NULL)  
             return;  

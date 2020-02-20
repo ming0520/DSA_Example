@@ -42,7 +42,12 @@ class LinkedStack{
     }
 
     int Top(){
-        return(myTop->Data);
+        if(!Empty()){
+            return(myTop->Data);
+        }
+        else{
+            cout << "List is empty" << endl;
+        }
     }
 
     int countNode(){
